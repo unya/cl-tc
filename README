@@ -1,0 +1,23 @@
+* Intro
+
+TokyoCabinet is a set of database + network server + reverse index
+(for full-text search) libraries, implemented in C and built for
+speed. They represent non-relational wing of databases, though
+TokyoCabinet does have table-based storage with queries on tables (in
+a way, that mirrors basically what 90% of people use MySQL for ;-) )
+
+cl-tc is a set of SWIG-generated CFFI bindings for TokyoCabinet
+library and in future, TokyoTyrant and TokyoDystopia. Currently
+available bindings are 1-to-1 mapping of TokyoCabinet’s C API,
+available in package tokyocabinet-sys. They will be used to make a
+nice, CLOS-y API which will reside in package tokyocabinet, however,
+it’s still not written :)
+
+* How to use
+
+Just symlink ASDF definition file into your registry (or load it or
+add it manually to registry, your pick) and use asdf to load it.
+
+Currently only the C API is available, through direct bindings in
+#:TOKYOCABINET-SYS package. Proper CL api coming soon.
+
