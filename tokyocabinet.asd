@@ -3,7 +3,7 @@
   :description "Interface to TokyoCabinet database library"
   :maintainer "Paweł Lasek <pawel.lasek@gmail.com>"
   :author "Paweł Lasek <pawel.lasek@gmail.com>"
-  :licence "BSD-style"
+  :licence "MIT-style"
   :depends-on (:cffi)
   :serial t
   ;; components likely need manual reordering

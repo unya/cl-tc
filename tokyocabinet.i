@@ -498,3 +498,51 @@ bool tctdbforeach(TCTDB *tdb, TCITER iter, void *op);
 int tctdbstrtoindextype(const char *str);
 int tctdbqrystrtocondop(const char *str);
 int tctdbqrystrtoordertype(const char *str);
+
+
+/* Abstract DB API */
+
+enum {                                   /* enumeration for open modes */
+  ADBOVOID,                              /* not opened */
+  ADBOMDB,                               /* on-memory hash database */
+  ADBONDB,                               /* on-memory tree database */
+  ADBOHDB,                               /* hash database */
+  ADBOBDB,                               /* B+ tree database */
+  ADBOFDB,                               /* fixed-length database */
+  ADBOTDB                                /* table database */
+};
+
+TCADB *tcadbnew(void);
+void tcadbdel(TCADB *adb);
+bool tcadbopen(TCADB *adb, const char *name);
+bool tcadbclose(TCADB *adb);
+bool tcadbput(TCADB *adb, const void *kbuf, int ksiz, const void *vbuf, int vsiz);
+bool tcadbput2(TCADB *adb, const char *kstr, const char *vstr);
+bool tcadbputkeep(TCADB *adb, const void *kbuf, int ksiz, const void *vbuf, int vsiz);
+bool tcadbputkeep2(TCADB *adb, const char *kstr, const char *vstr);
+bool tcadbputcat(TCADB *adb, const void *kbuf, int ksiz, const void *vbuf, int vsiz);
+bool tcadbputcat2(TCADB *adb, const char *kstr, const char *vstr);
+bool tcadbout(TCADB *adb, const void *kbuf, int ksiz);
+bool tcadbout2(TCADB *adb, const char *kstr);
+void *tcadbget(TCADB *adb, const void *kbuf, int ksiz, int *sp);
+char *tcadbget2(TCADB *adb, const char *kstr);
+int tcadbvsiz(TCADB *adb, const void *kbuf, int ksiz);
+int tcadbvsiz2(TCADB *adb, const char *kstr);
+bool tcadbiterinit(TCADB *adb);
+void *tcadbiternext(TCADB *adb, int *sp);
+char *tcadbiternext2(TCADB *adb);
+TCLIST *tcadbfwmkeys(TCADB *adb, const void *pbuf, int psiz, int max);
+TCLIST *tcadbfwmkeys2(TCADB *adb, const char *pstr, int max);
+int tcadbaddint(TCADB *adb, const void *kbuf, int ksiz, int num);
+double tcadbadddouble(TCADB *adb, const void *kbuf, int ksiz, double num);
+bool tcadbsync(TCADB *adb);
+bool tcadbvanish(TCADB *adb);
+bool tcadbcopy(TCADB *adb, const char *path);
+uint64_t tcadbrnum(TCADB *adb);
+uint64_t tcadbsize(TCADB *adb);
+TCLIST *tcadbmisc(TCADB *adb, const char *name, const TCLIST *args);
+int tcadbomode(TCADB *adb);
+void *tcadbreveal(TCADB *adb);
+bool tcadbputproc(TCADB *adb, const void *kbuf, int ksiz, const char *vbuf, int vsiz,
+                  TCPDPROC proc, void *op);
+bool tcadbforeach(TCADB *adb, TCITER iter, void *op);
