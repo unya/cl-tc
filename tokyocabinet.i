@@ -1,5 +1,12 @@
 %module tokyocabinet
+%insert("lisphead") %{
+(in-package :tokyocabinet-sys)
+(define-foreign-library tokyocabinet
+  (:unix (:or "libtokyocabinet.so.7" "libtokyocabinet.so"))
+  (t (:default "libtokyocabinet")))
+(use-foreign-library tokyocabinet)
 
+%}
 /* Utility functions and typedefs */
 
 typedef int (*TCCMP)(const char *aptr, int asiz, const char *bptr, int bsiz, void *op);
