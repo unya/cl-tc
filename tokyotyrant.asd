@@ -1,15 +1,13 @@
 (asdf:defsystem tokyocabinet
   :version "0"
-  :description "Interface to TokyoCabinet database library"
+  :description "Interface to TokyoTyrant"
   :maintainer "Paweł Lasek <pawel.lasek@gmail.com>"
   :author "Paweł Lasek <pawel.lasek@gmail.com>"
   :licence "MIT X11"
   :depends-on (:cffi)
   :serial t
   ;; components likely need manual reordering
-  :components ((:file "package-tc")
-	       (:file "tokyocabinet")
-	       (:file "tc-db"))
+  :components ((:file "package-tt")
+	       (:file "tokyotyrant"))
   ;; :long-description ""
 )
-  
